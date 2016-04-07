@@ -1,0 +1,6 @@
+ballclock:
+  image: 6b4f04c2de41
+  #command: ./test 123
+  command: /bin/sh
+  volumes:
+    - .:/code/gocompose
