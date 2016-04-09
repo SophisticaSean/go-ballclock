@@ -10,7 +10,7 @@ func main() {
   defer profile.Start().Stop()
   temp := os.Args[1]
   i, _ := strconv.Atoi(temp)
-  var queue = make([]int,0)
+  var queue = make([]int,1000)
   var minute = make([]int,0)
   var five = make([]int,0)
   var hours = make([]int,0)
@@ -18,9 +18,11 @@ func main() {
   j := 1
   for j <= i {
     // fmt.Println(j)
-    queue = append(queue, j)
+    queue[j-1] = j
     j = j + 1
   }
+  queue = queue[0:i]
+
 
   pristine := []int{}
   pristine = append(pristine, queue...)
@@ -36,19 +38,20 @@ func main() {
     var ball = queue[0]
     loop_count = loop_count + 1
     //var rollover = false
-    queue = append(queue[:0], queue[1:]...)
-    if len(minute) == 4 {
+    queue = queue[1:len(queue)]
+    if loop_count % 5 == 0 && len(minute) == 4 {
       for j := len(minute) - 1; j >= 0; j-- {
         //fmt.Println(j)
         ball_to_move := minute[j]
         minute = minute[:len(minute)-1]
         queue = append(queue, ball_to_move)
       }
-      if len(five) == 11 {
+      if loop_count % 12 == 0 && len(five) == 11 {
         for j := len(five) - 1; j >= 0; j-- {
           //fmt.Println(j)
           ball_to_move := five[j]
           five = five[:len(five)-1]
+          queue, _, _ = grow(queue, 4)
           queue = append(queue, ball_to_move)
         }
         if len(hours) == 11 {
@@ -90,6 +93,7 @@ func main() {
         fmt.Println(queue)
         fmt.Println(pristine)
         fmt.Println((((loop_count)/60)/12)/2)
+        fmt.Println(len(queue))
         break
       }
     }

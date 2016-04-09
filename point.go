@@ -3,11 +3,11 @@ package main
 import "fmt"
 import "os"
 import "strconv"
-//import "github.com/pkg/profile"
+import "github.com/pkg/profile"
 
 func main() {
-  //defer profile.Start().Stop()
-  debug := false
+  defer profile.Start().Stop()
+  //debug := false
   temp := os.Args[1]
   i, _ := strconv.Atoi(temp)
   zero_val := 0
@@ -55,45 +55,45 @@ func main() {
       //break
     //}
 
-    if loop_count > 5 && debug == true{
-      fmt.Println(len(queue))
+    //if loop_count > 5 && debug == true{
+      //fmt.Println(len(queue))
 
-      var temp = make([]int,0)
-      for j := 0; j < len(queue); j++ {
-        temp = append(temp, *queue[j])
-      }
-      fmt.Println(temp)
+      //var temp = make([]int,0)
+      //for j := 0; j < len(queue); j++ {
+        //temp = append(temp, *queue[j])
+      //}
+      //fmt.Println(temp)
 
-      temp = make([]int,0)
-      for j := len(minute) - 1; j >= 0; j-- {
-        temp = append(temp, *minute[j])
-      }
-      fmt.Println(temp)
+      //temp = make([]int,0)
+      //for j := len(minute) - 1; j >= 0; j-- {
+        //temp = append(temp, *minute[j])
+      //}
+      //fmt.Println(temp)
 
-      temp = make([]int,0)
-      for j := len(five) - 1; j >= 0; j-- {
-        temp = append(temp, *five[j])
-      }
-      fmt.Println(temp)
+      //temp = make([]int,0)
+      //for j := len(five) - 1; j >= 0; j-- {
+        //temp = append(temp, *five[j])
+      //}
+      //fmt.Println(temp)
 
-      temp = make([]int,0)
-      for j := len(hours) - 1; j >= 0; j-- {
-        temp = append(temp, *hours[j])
-      }
-      fmt.Println(temp)
-      break
-    }
+      //temp = make([]int,0)
+      //for j := len(hours) - 1; j >= 0; j-- {
+        //temp = append(temp, *hours[j])
+      //}
+      //fmt.Println(temp)
+      //break
+    //}
 
     loop_count = loop_count + 1
     cur_ball = queue[0]
     queue = append(queue[:0], queue[1:]...)
     //queue[cur_ball_index] = zero
 
-    if minute[0] != zero {
+    if loop_count % 5 == 0 && minute[0] != zero {
       queue = append(queue, minute...)
       copy(minute, p_minute)
 
-      if five[0] != zero {
+      if loop_count % 12 == 0  && five[0] != zero {
         for j := 0; j < len(five); j++ {
           queue = append(queue, five[j])
           five[j] = zero
