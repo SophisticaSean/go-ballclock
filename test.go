@@ -10,7 +10,7 @@ func main() {
   defer profile.Start().Stop()
   temp := os.Args[1]
   i, _ := strconv.Atoi(temp)
-  var queue = make([]int,1000)
+  var queue = make([]int,1000,1000)
   var minute = make([]int,0)
   var five = make([]int,0)
   var hours = make([]int,0)
