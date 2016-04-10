@@ -27,7 +27,9 @@ func main() {
   pristine := []int{}
   pristine = append(pristine, queue...)
   loop_count := 0
-  for {
+  // makes sure sim is ran 10 times
+  test_amount := 10
+  for test_amount > 0{
     //if loop_count > 4 {
       //fmt.Println(minute)
       //fmt.Println(five)
@@ -94,7 +96,9 @@ func main() {
         fmt.Println(pristine)
         fmt.Println((((loop_count)/60)/12)/2)
         fmt.Println(len(queue))
-        break
+	test_amount = test_amount - 1
+	loop_count = 0
+        // break
       }
     }
   }
