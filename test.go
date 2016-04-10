@@ -39,19 +39,19 @@ func main() {
     loop_count = loop_count + 1
     //var rollover = false
     queue = queue[1:len(queue)]
-    if loop_count % 5 == 0 && len(minute) == 4 {
+    if len(minute) == 4 {
       for j := len(minute) - 1; j >= 0; j-- {
         //fmt.Println(j)
         ball_to_move := minute[j]
         minute = minute[:len(minute)-1]
         queue = append(queue, ball_to_move)
       }
-      if loop_count % 12 == 0 && len(five) == 11 {
+      if len(five) == 11 {
         for j := len(five) - 1; j >= 0; j-- {
           //fmt.Println(j)
           ball_to_move := five[j]
           five = five[:len(five)-1]
-          queue, _, _ = grow(queue, 4)
+          //queue, _, _ = grow(queue, 4)
           queue = append(queue, ball_to_move)
         }
         if len(hours) == 11 {
@@ -75,7 +75,7 @@ func main() {
     //fmt.Println(five)
     //fmt.Println(hours)
     //fmt.Println(queue)
-    if loop_count % 720 == 0 && len(queue) == len(pristine){
+    if len(queue) == len(pristine){
       should_break := false
       for j := len(pristine) - 1; j >= 0; j-- {
         equal := pristine[j] == queue[j]
